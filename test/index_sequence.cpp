@@ -15,5 +15,5 @@ TEST(index_sequence, make_index_seuence) {
         std::is_same<mil::utils::make_index_sequence<2>, mil::utils::index_sequnece<0, 1>>::value));
 
     EXPECT_TRUE((std::is_same<mil::utils::make_index_sequence<5>,
-                              mil::utils::index_sequnece<0, 1, 2, 3, 4, 5>>::value));
+                              mil::utils::index_sequnece<0, 1, 2, 3, 4>>::value));
 }
