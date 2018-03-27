@@ -5,6 +5,7 @@ enable_testing()
 add_executable(unit_tests
     structure_size.cpp
     index_sequence.cpp
+    members_list.cpp
 )
 
 target_link_libraries(unit_tests
