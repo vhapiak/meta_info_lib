@@ -13,6 +13,7 @@ class field_info {
 
     const char* name() const;
     pointer_t field() const;
+    Type& value(Class& obj) const;
     const Type& value(const Class& obj) const;
 
   private:
@@ -28,6 +29,11 @@ const char* field_info<Class, Type>::name() const {
 template <typename Class, typename Type>
 typename field_info<Class, Type>::pointer_t field_info<Class, Type>::field() const {
     return m_field;
+}
+
+template <typename Class, typename Type>
+Type& field_info<Class, Type>::value(Class& obj) const {
+    return obj.*m_field;
 }
 
 template <typename Class, typename Type>
