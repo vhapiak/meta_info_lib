@@ -2,6 +2,7 @@
 
 #include "mil/class_info.hpp"
 #include "mil/field_info.hpp"
+#include "mil/inheritance.hpp"
 #include "mil/traits.hpp"
 
 namespace mil {
@@ -30,3 +31,7 @@ const class_info<T>& meta_info() {
     TYPE NAME
 
 #define MIL_END static constexpr std::size_t _mil_last_id = __LINE__
+
+#define MIL_INHERITANCE(CLASS, PARENT) \
+  public                               \
+    PARENT, mil::inheritance<CLASS, PARENT>
