@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 #include "mil/class_info.hpp"
 #include "mil/field_info.hpp"
 #include "mil/inheritance.hpp"
@@ -15,12 +17,19 @@ const class_info<T>& meta_info() {
 
 }  // namespace mil
 
-#define MIL_BEGIN(CLASS)                                  \
-    using _mil_self_t = CLASS;                            \
-    template <std::size_t I>                              \
-    static mil::void_t _mil_get_field_info(mil::tag<I>) { \
-        return mil::void_t{};                             \
-    }                                                     \
+void f(int);
+
+#define MIL_BEGIN(CLASS)                                                                         \
+    using _mil_self_t = CLASS;                                                                   \
+    void _mil_check_self_t() {                                                                   \
+        static_assert(std::is_same<decltype(this), _mil_self_t*>::value, "Wrong name of class"); \
+    }                                                                                            \
+                                                                                                 \
+    template <std::size_t I>                                                                     \
+    static mil::void_t _mil_get_field_info(mil::tag<I>) {                                        \
+        return mil::void_t{};                                                                    \
+    }                                                                                            \
+                                                                                                 \
     static constexpr std::size_t _mil_frist_id = __LINE__
 
 #define MIL_DECLARE_FIELD(TYPE, NAME)                                         \
