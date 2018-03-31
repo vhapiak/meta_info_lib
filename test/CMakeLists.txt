@@ -7,6 +7,7 @@ add_executable(unit_tests
     index_sequence.cpp
     members_list.cpp
     inheritance.cpp
+    has_meta_info.cpp
 )
 
 target_link_libraries(unit_tests
