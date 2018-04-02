@@ -10,3 +10,8 @@ target_include_directories(
 )
 
 add_subdirectory(test)
+
+option(with_benchmarks "Build benchmarks" off)
+if (with_benchmarks)
+    add_subdirectory(benchmark)
+endif()
