@@ -2,6 +2,7 @@
 
 #include <cstddef>
 
+#include "mil/members_accessor.hpp"
 #include "mil/traits.hpp"
 #include "mil/utils/index_sequence.hpp"
 
@@ -29,15 +30,15 @@ template <typename... Fields>
 struct not_void_indicies : not_void_indicies_impl<0, utils::index_sequnece<>, Fields...> {};
 
 template <typename T, std::size_t... Indicies>
-not_void_indicies<decltype(T::_mil_get_field_info(mil::tag<Indicies>{}))...> fetch_fields_ids(
-    utils::index_sequnece<Indicies...>) {
-}
+not_void_indicies<decltype(members_accessor<T>::get_field_info(mil::tag<Indicies>{}))...>
+fetch_fields_ids(utils::index_sequnece<Indicies...>);
 
 template <typename T, std::size_t LastId>
 struct fields_ids_impl : decltype(fetch_fields_ids<T>(utils::make_index_sequence<LastId>{})) {};
 
 template <typename T>
-struct fields_ids : fields_ids_impl<T, T::_mil_last_id - T::_mil_frist_id> {};
+struct fields_ids
+    : fields_ids_impl<T, members_accessor<T>::last_id - members_accessor<T>::first_id> {};
 
 }  // namespace detail
 }  // namespace mil

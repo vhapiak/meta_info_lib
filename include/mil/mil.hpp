@@ -5,8 +5,8 @@
 #include "mil/class_info.hpp"
 #include "mil/field_info.hpp"
 #include "mil/inheritance.hpp"
+#include "mil/members_accessor.hpp"
 #include "mil/traits.hpp"
-
 namespace mil {
 
 template <typename T>
@@ -25,16 +25,20 @@ void f(int);
         static_assert(std::is_same<decltype(this), _mil_self_t*>::value, "Wrong name of class"); \
     }                                                                                            \
                                                                                                  \
+    friend struct mil::detail::has_meta_info;                                                    \
+    template <typename T>                                                                        \
+    friend struct mil::members_accessor;                                                         \
+                                                                                                 \
     template <std::size_t I>                                                                     \
     static mil::void_t _mil_get_field_info(mil::tag<I>) {                                        \
         return mil::void_t{};                                                                    \
     }                                                                                            \
                                                                                                  \
-    static constexpr std::size_t _mil_frist_id = __LINE__
+    static constexpr std::size_t _mil_first_id = __LINE__
 
 #define MIL_DECLARE_FIELD(TYPE, NAME)                                         \
     static mil::field_info<_mil_self_t, TYPE> _mil_get_field_info(            \
-        mil::tag<__LINE__ - _mil_frist_id>) {                                 \
+        mil::tag<__LINE__ - _mil_first_id>) {                                 \
         return mil::field_info<_mil_self_t, TYPE>(&_mil_self_t::NAME, #NAME); \
     }                                                                         \
     TYPE NAME

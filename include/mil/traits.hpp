@@ -12,6 +12,6 @@ struct tag {};
 struct void_t {};
 
 template <typename T>
-struct has_meta_info : detail::has_meta_info<T> {};
+using has_meta_info = detail::has_meta_info::type<T>;
 
 }  // namespace mil

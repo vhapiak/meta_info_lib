@@ -5,14 +5,16 @@
 namespace mil {
 namespace detail {
 
-template <typename T>
-bool has_meta_info_impl(decltype(T::_mil_frist_id) *);
+struct has_meta_info {
+    template <typename T>
+    static bool has_meta_info_impl(decltype(T::_mil_first_id) *);
 
-template <typename T>
-void has_meta_info_impl(...);
+    template <typename T>
+    static void has_meta_info_impl(...);
 
-template <typename T>
-struct has_meta_info : std::is_same<bool, decltype(has_meta_info_impl<T>(nullptr))> {};
+    template <typename T>
+    using type = std::is_same<bool, decltype(has_meta_info_impl<T>(nullptr))>;
+};
 
 }  // namespace detail
 }  // namespace mil

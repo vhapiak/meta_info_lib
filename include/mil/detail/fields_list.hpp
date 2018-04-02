@@ -2,6 +2,7 @@
 
 #include <tuple>
 
+#include "mil/members_accessor.hpp"
 #include "mil/traits.hpp"
 #include "mil/utils/index_sequence.hpp"
 
@@ -9,9 +10,8 @@ namespace mil {
 namespace detail {
 
 template <typename T, std::size_t... Indicies>
-std::tuple<decltype(T::_mil_get_field_info(mil::tag<Indicies>{}))...> fetch_fields_list(
-    utils::index_sequnece<Indicies...>) {
-}
+std::tuple<decltype(members_accessor<T>::get_field_info(mil::tag<Indicies>{}))...>
+fetch_fields_list(utils::index_sequnece<Indicies...>);
 
 template <typename T, typename FieldsIds>
 struct fields_list {
@@ -25,7 +25,7 @@ template <typename T, std::size_t... Indicies>
 fields_list_t<T, utils::index_sequnece<Indicies...>> fields_impl(
     utils::index_sequnece<Indicies...>) {
     return fields_list_t<T, utils::index_sequnece<Indicies...>>(
-        T::_mil_get_field_info(mil::tag<Indicies>{})...);
+        members_accessor<T>::get_field_info(mil::tag<Indicies>{})...);
 }
 
 template <typename T, typename FieldsIds>

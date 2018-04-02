@@ -3,9 +3,8 @@
 #include <gtest/gtest.h>
 
 #include "mil/mil.hpp"
-#include "mil/utils/for_each.hpp"
 
-struct user_type {
+class user_type {
     MIL_BEGIN(user_type);
     MIL_DECLARE_FIELD(int, i);
     MIL_DECLARE_FIELD(double, d);
