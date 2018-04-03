@@ -10,7 +10,8 @@
 namespace mil {
 
 template <typename T>
-const class_info<T>& meta_info() {
+const class_info<T>& meta_info(T* type_deduction = nullptr) {
+    (void) type_deduction;
     static const class_info<T> info;
     return info;
 }
