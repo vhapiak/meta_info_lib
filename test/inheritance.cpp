@@ -6,19 +6,19 @@
 
 struct A {
     MIL_BEGIN(A);
-    MIL_DECLARE_FIELD(int, i);
+    MIL_DEFINE_FIELD(int, i);
     MIL_END;
 };
 
 struct B : MIL_INHERITANCE(B, A) {
     MIL_BEGIN(B);
-    MIL_DECLARE_FIELD(float, f);
+    MIL_DEFINE_FIELD(float, f);
     MIL_END;
 };
 
 struct C : MIL_INHERITANCE(C, B) {
     MIL_BEGIN(C);
-    MIL_DECLARE_FIELD(double, d);
+    MIL_DEFINE_FIELD(double, d);
     MIL_END;
 };
 

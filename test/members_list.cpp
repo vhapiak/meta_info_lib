@@ -6,8 +6,8 @@
 
 class user_type {
     MIL_BEGIN(user_type);
-    MIL_DECLARE_FIELD(int, i);
-    MIL_DECLARE_FIELD(double, d);
+    MIL_DEFINE_FIELD(int, i);
+    MIL_DEFINE_FIELD(double, d);
     MIL_END;
 };
 using info = mil::class_info<user_type>;

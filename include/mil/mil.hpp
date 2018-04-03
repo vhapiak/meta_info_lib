@@ -26,7 +26,7 @@ void f(int);
     }                                                                                            \
                                                                                                  \
     friend struct mil::detail::has_meta_info;                                                    \
-    template <typename T>                                                                        \
+    template <typename _MIL_T>                                                                        \
     friend struct mil::members_accessor;                                                         \
                                                                                                  \
     template <std::size_t I>                                                                     \
@@ -36,7 +36,7 @@ void f(int);
                                                                                                  \
     static constexpr std::size_t _mil_first_id = __LINE__
 
-#define MIL_DECLARE_FIELD(TYPE, NAME)                                         \
+#define MIL_DEFINE_FIELD(TYPE, NAME)                                         \
     static mil::field_info<_mil_self_t, TYPE> _mil_get_field_info(            \
         mil::tag<__LINE__ - _mil_first_id>) {                                 \
         return mil::field_info<_mil_self_t, TYPE>(&_mil_self_t::NAME, #NAME); \

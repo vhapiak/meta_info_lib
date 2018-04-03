@@ -9,8 +9,8 @@ struct normal {
 
 struct extended {
     MIL_BEGIN(extended);
-    MIL_DECLARE_FIELD(int, i);
-    MIL_DECLARE_FIELD(double, d);
+    MIL_DEFINE_FIELD(int, i);
+    MIL_DEFINE_FIELD(double, d);
     MIL_END;
 };
 
@@ -24,7 +24,7 @@ struct inheritance : normal {
 
 struct inheritance_extended : MIL_INHERITANCE(inheritance_extended, extended) {
     MIL_BEGIN(inheritance_extended);
-    MIL_DECLARE_FIELD(float, f);
+    MIL_DEFINE_FIELD(float, f);
     MIL_END;
 };
 
