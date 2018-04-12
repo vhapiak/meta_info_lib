@@ -17,6 +17,7 @@ void_t fetch_parent_type(...);
 template <typename T>
 struct parent_type {
     using type = decltype(fetch_parent_type<T>(std::declval<T>()));
+
 };
 
 template <typename T>

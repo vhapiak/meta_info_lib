@@ -112,4 +112,4 @@ mil::meta_info<B>().parent(); // returns an instance of mil::class_info<A>
 mil::meta_info<A>().parent(); // returns an instance of mil::class_info<mil::void_t>
 ```
 
-> Yes, you must copy paste the struct name again in `MIL_INHERITANCE` call. And we even cannot check that you did it right :(
+> Yes, you must copy paste the struct name again in `MIL_INHERITANCE` call, but we check in compile time that the name is correct
