@@ -22,6 +22,12 @@ struct C : MIL_INHERITANCE(C, B) {
     MIL_END;
 };
 
+TEST(inheritance, has_parent) {
+    EXPECT_FALSE(mil::has_parent<A>::value);
+    EXPECT_TRUE(mil::has_parent<B>::value);
+    EXPECT_TRUE(mil::has_parent<C>::value);
+}
+
 TEST(inheritance, parent_type) {
     EXPECT_TRUE((std::is_same<mil::void_t, typename mil::class_info<A>::parent_type>::value));
     EXPECT_TRUE((std::is_same<A, typename mil::class_info<B>::parent_type>::value));

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <tuple>
+#include "mil/traits.hpp"
 
 namespace mil {
 
 template <typename Class, typename Parent>
-struct inheritance {};
+struct inheritance : mil::inherits {};
 
 }  // namespace mil
